@@ -43,6 +43,8 @@ GEM
     ast (2.3.0)
     brakeman (3.3.3)
     builder (3.2.2)
+    bulma-rails (0.0.28)
+      sass (~> 3.2)
     bundler-audit (0.5.0)
       bundler (~> 1.2)
       thor (~> 0.18)
@@ -59,6 +61,7 @@ GEM
       json
     codeclimate-test-reporter (0.6.0)
       simplecov (>= 0.7.1, < 1.0.0)
+    coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -72,28 +75,45 @@ GEM
       json
     concurrent-ruby (1.0.2)
     database_cleaner (1.5.3)
+    decent_exposure (3.0.0)
+      activesupport (>= 4.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
       railties (>= 4.0, < 5.1)
+    email_spec (2.1.0)
+      htmlentities (~> 4.3.3)
+      launchy (~> 2.1)
+      mail (~> 2.6.3)
     erubis (2.7.0)
     execjs (2.7.0)
+    factory_girl (4.7.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
+      railties (>= 3.0.0)
     ffi (1.9.14)
     foreman (0.82.0)
       thor (~> 0.19.1)
+    formulaic (0.3.0)
+      activesupport
+      capybara
+      i18n
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    htmlentities (4.3.4)
     i18n (0.7.0)
-    jbuilder (2.5.0)
-      activesupport (>= 3.0.0, < 5.1)
-      multi_json (~> 1.2)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.0.1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -101,13 +121,13 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    mail_form (1.3.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
-    multi_json (1.12.1)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
@@ -117,6 +137,12 @@ GEM
     pg (0.18.4)
     pkg-config (1.1.7)
     powerpack (0.1.1)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     puma (3.5.0)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -149,6 +175,8 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    responders (2.2.0)
+      railties (>= 4.2.0, < 5.1)
     rspec-core (3.5.1)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -185,6 +213,9 @@ GEM
       sass (~> 3.4.20)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    simple_form (3.2.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     simplecov (0.12.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -198,6 +229,7 @@ GEM
       rubocop (>= 0.36.0)
       slim (~> 3.0)
       sysexits (~> 1.1)
+    slop (3.6.0)
     spring (1.7.2)
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
@@ -214,9 +246,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
-    turbolinks (5.0.0)
-      turbolinks-source (~> 5)
-    turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.0)
@@ -233,32 +262,41 @@ PLATFORMS
 
 DEPENDENCIES
   brakeman
+  bulma-rails (~> 0.0.28)
   bundler-audit
   byebug
   capybara
   capybara-webkit
   codeclimate-test-reporter
-  coffee-rails (~> 4.2)
+  coffee-rails
   coffeelint
   database_cleaner
+  decent_exposure
   dotenv-rails
+  email_spec
+  factory_girl_rails
   foreman
-  jbuilder (~> 2.5)
+  formulaic
   jquery-rails
+  letter_opener
   listen (~> 3.0.5)
+  mail_form
   pg
+  pry-rails
   puma (~> 3.0)
   rails (~> 5.0.0)
+  responders
   rspec-rails
   rubocop
-  sass-rails (~> 5.0)
+  sass-rails
   scss_lint
   shoulda-matchers
+  simple_form
+  slim
   slim_lint
   spring
   spring-watcher-listen (~> 2.0.0)
-  turbolinks (~> 5)
-  uglifier (>= 1.3.0)
+  uglifier
 
 BUNDLED WITH
    1.12.5

@@ -1,0 +1,6 @@
+- bulma_types = { "notice" => "is-info", "alert" => "is-danger" }
+
+- flash.each do |type, content|
+  .notification class="#{bulma_types[type]}"
+    = content
+    button.notification-close.delete

@@ -1,0 +1,14 @@
+.columns
+  .column.is-offset-4
+    .columns
+      .column.has-text-left
+        h3.title.is-3 Stay in touch
+
+    .columns
+      .column.is-half
+        = simple_form_for feedback, url: feedback_path, wrapper: :bulma do |f|
+          = f.input :name
+          = f.input :email
+          = f.input :message, as: :text
+
+          = f.button :submit, "Submit", class: "is-medium is-primary"
