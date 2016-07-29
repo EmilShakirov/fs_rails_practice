@@ -81,6 +81,16 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  ActionMailer::Base.smtp_settings = {
+    address: "smtp-pulse.com",
+    authentication: :plain,
+    domain: "smtp-pulse.com",
+    enable_starttls_auto: true,
+    user_name: ENV["SMTP_PULSE_USERNAME"],
+    password: ENV["SMTP_PULSE_PASSWORD"],
+    port: "2525"
+  }
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
