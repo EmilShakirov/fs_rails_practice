@@ -75,21 +75,21 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
-    logger.formatter = config.log_formatter
-    config.logger = ActiveSupport::TaggedLogging.new(logger)
-  end
+  # Enable Email delivery via custom SMTP server or via SendGrid by default
+  if ENV["SMTP_USERNAME"]
+    config.action_mailer.delivery_method = :smtp
 
-  ActionMailer::Base.smtp_settings = {
-    address: "smtp-pulse.com",
-    authentication: :plain,
-    domain: "smtp-pulse.com",
-    enable_starttls_auto: true,
-    user_name: ENV["SMTP_PULSE_USERNAME"],
-    password: ENV["SMTP_PULSE_PASSWORD"],
-    port: "2525"
-  }
+    config.action_mailer.smtp_settings = {
+      authentication:       :plain,
+      enable_starttls_auto: true,
+      openssl_verify_mode:  ENV.fetch("SMTP_OPENSSL_VERIFY_MODE", nil),
+      address:              ENV.fetch("SMTP_ADDRESS", "smtp.sendgrid.net"),
+      port:                 ENV.fetch("SMTP_PORT", 587),
+      domain:               ENV.fetch("SMTP_DOMAIN", "heroku.com"),
+      user_name:            ENV.fetch("SMTP_USERNAME"),
+      password:             ENV.fetch("SMTP_PASSWORD")
+    }
+  end
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
